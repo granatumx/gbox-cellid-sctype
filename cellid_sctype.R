@@ -9,7 +9,7 @@ source("./sctype_score_.R")
 tissue <- gn_get_arg('tissue')
 assay <- gn_get_import('assay')
 
-in_matrix_with_gids <- assay$matrix
+in_matrix_with_gids <- t(assay$matrix)
 colnames(in_matrix_with_gids) <- assay$geneIds
 rownames(in_matrix_with_gids) <- assay$sampleIds
 print(in_matrix_with_gids)
