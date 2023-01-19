@@ -13,7 +13,7 @@ assay <- gn_get_import('assay')
 in_matrix_with_gids <- assay$matrix
 rownames(in_matrix_with_gids) <- assay$geneIds
 colnames(in_matrix_with_gids) <- assay$sampleIds
-in_matrix_with_gds <- as.data.table(in_matrix_with_gds, keep.rownames = TRUE)
+in_matrix_with_gids <- as.data.table(in_matrix_with_gids, keep.rownames = TRUE)
 print(in_matrix_with_gids)
 cds <- CreateSeuratObject(counts = in_matrix_with_gids, project = "Proj", min.cells = 3, min.features = 200)
 print("=============== Check this ===================")
