@@ -32,9 +32,9 @@ scores <- t(sctype_score(scRNAseqData=cds[["RNA"]]@scale.data, scaled=TRUE, gs=g
 print("Score results")
 head(scores)
 
-celltype <- colnames(scores)[max.col(scores,ties.method="first")]
-names(celltype) <- assay$sampleIds
-gn_export_statically(celltype, 'cellTypeAssignment')
+celltype <- {}
+celltype[assay$sampleIds] <- colnames(scores)[max.col(scores,ties.method="first")]
+gn_export_statically(as.data.frame(t(celltype)), 'cellTypeAssignment')
 
 #gn_add_result(
 #  output[['results']][['numbers_of_genes']],
