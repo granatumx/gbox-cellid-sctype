@@ -1,0 +1,68 @@
+id: CellIDscType-{VER}
+meta:
+  title: CellID scType {VER}
+  subtitle: Typing of cells using scType
+  citations:
+    - bibtex: |
+        @article{ianevski2022fully,
+          title={Fully-automated and ultra-fast cell-type identification using specific marker combinations from single-cell transcriptomic data},
+          author={Ianevski, Aleksandr and Giri, Anil K and Aittokallio, Tero},
+          journal={Nature communications},
+          volume={13},
+          number={1},
+          pages={1--10},
+          year={2022},
+          publisher={Nature Publishing Group}
+        }
+  description: >
+    Accepts data matrix (assumed to be scaled), and tissues to which the samples may belong. The tissues that 
+    are recognized are pulled from the ScTypeDB_full.xlsx file produced by the author.
+endpoints:
+  backend:
+    cmd: Rscript ./cellid_sctype.R
+    type: docker
+    image: {GBOX}
+frontend:
+  args:
+    - injectInto: tissue
+      type: select
+      label: Tissue type
+      default: Brain
+      choices:
+        - value: Brain
+          label: Brain
+        - value: Stomach
+          label: Stomach
+        - value: Thymus
+          label: Thymus
+        - value: Pancreas
+          label: Pancreas
+        - value: Liver
+          label: Liver
+        - value: Eye
+          label: Eye
+        - value: Lung
+          label: Lung
+        - value: Kidney
+          label: Kidney
+        - value: Immune system
+          label: Immune system
+        - value: Spleen
+          label: Spleen
+        - value: Placenta
+          label: Placenta
+        - value: Muscle
+          label: Muscle
+        - value: Intestine
+          label: Intestine
+        - value: Heart
+          label: Heart
+        - value: Adrenal
+          label: Adrenal
+  exports:
+    - kind: sampleMeta
+      extractFrom: cellTypeAssignment
+  imports:
+    - kind: assay
+      injectInto: assay
+      label: Assay including matrix and geneIds
