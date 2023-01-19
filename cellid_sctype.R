@@ -13,9 +13,14 @@ assay <- gn_get_import('assay')
 in_matrix_with_gids <- assay$matrix
 rownames(in_matrix_with_gids) <- assay$geneIds
 colnames(in_matrix_with_gids) <- assay$sampleIds
-in_matrix_with_gids <- as.data.table(t(in_matrix_with_gids))
-print(in_matrix_with_gids)
-cds <- CreateSeuratObject(counts = in_matrix_with_gids, project = "Proj", min.cells = 3, min.features = 200, row.names = assay$sampleIds)
+in_matrix_with_gids <- as.data.table(in_matrix_with_gids)
+print(assay$sampleIds)
+head(in_matrix_with_gids)
+cds <- CreateSeuratObject(counts = in_matrix_with_gids, project = "Proj", assay = "RNA", min.cells = 3, min.features = 200)
+print("Check rownames")
+print(rownames(cds))
+print("Check colnames")
+print(colnames(cds))
 cds <- FindVariableFeatures(cds, selection.method = "vst")
 cds <- ScaleData(cds, features = rownames(cds))
 cds <- RunPCA(cds, features = VariableFeatures(object = cds))
