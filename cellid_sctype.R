@@ -1,6 +1,6 @@
 library(dplyr)
 library(Seurat)
-library(HGCNhelper)
+library(HGNChelper)
 
 source('./granatum_sdk.R') # Uses GranatumX SDK
 source("./gene_sets_prepare.R")
@@ -13,7 +13,7 @@ in_matrix_with_gids <- assay$matrix
 rownames(in_matrix_with_gids) <- assay$geneIds
 colnames(in_matrix_with_gids) <- assay$sampleIds
 cds <- newCellDataSet(in_matrix_with_gids, lowerDetectionLimit = 0, expressionFamily = negbinomial.size())
-gs_list = gene_sets_prepare("./ScTypeDB_full.xlsx", tissue)
+gs_list <- gene_sets_prepare("./ScTypeDB_full.xlsx", tissue)
 print("Running scoring now")
 
 scores <- sctype_score(scRNAseqData=cds[["RNA"]]@scale.data, scaled=TRUE, gs=gs_list$gs_positive, gs2=gs_list$gs_negative)
