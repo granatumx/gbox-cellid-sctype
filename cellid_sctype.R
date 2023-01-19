@@ -10,11 +10,10 @@ source("./sctype_score_.R")
 tissue <- gn_get_arg('tissue')
 assay <- gn_get_import('assay')
 
-in_matrix_with_gids <- assay$matrix
-rownames(in_matrix_with_gids) <- assay$geneIds
-colnames(in_matrix_with_gids) <- assay$sampleIds
-in_matrix_with_gids <- as.data.table(in_matrix_with_gids)
-print(assay$sampleIds)
+in_matrix_with_gids <- as.data.table(t(assay$matrix))
+colnames(in_matrix_with_gids) <- assay$geneIds
+rownames(in_matrix_with_gids) <- assay$sampleIds
+print("Check table head")
 head(in_matrix_with_gids)
 cds <- CreateSeuratObject(counts = in_matrix_with_gids, project = "Proj", assay = "RNA", min.cells = 3, min.features = 200)
 print("Check rownames")
