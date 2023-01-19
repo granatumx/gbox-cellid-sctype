@@ -1,5 +1,5 @@
 # this name will be displayed in the package installation
-id: Granatum2 Multi-Tool (written in R/Python) {VER}
+id: Cell Identification using scType (written in R) {VER}
 
 # this meta field provides the default meta for all gboxes
 # for example, if `./yamls/DifferentialExpression.yaml` doesn't
