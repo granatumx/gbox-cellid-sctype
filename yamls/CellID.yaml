@@ -16,7 +16,7 @@ meta:
         }
   description: >
     Accepts data matrix (assumed to be scaled), and tissues to which the samples may belong. The tissues that 
-    are recognized are pulled from the ScTypeDB_full.xlsx file produced by the author. Please cite https://www.nature.com/articles/s41467-022-28803-w. All packaged from this website and all open source licenses apply.
+    are recognized are pulled from the ScTypeDB_full.xlsx file produced by the author. Please cite https://www.nature.com/articles/s41467-022-28803-w. All packaged from this website and all open source licenses apply. Ianevski, A., Giri, A. K., & Aittokallio, T. (2022). Fully-automated and ultra-fast cell-type identification using specific marker combinations from single-cell transcriptomic data. Nature Communications, 13(1), Article https://doi.org/10.1038/s41467-022-28803-w
 endpoints:
   backend:
     cmd: Rscript ./cellid_sctype.R
