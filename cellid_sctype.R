@@ -28,11 +28,11 @@ print(cds)
 gs_list <- gene_sets_prepare("./ScTypeDB_full.xlsx", tissue)
 print("Running scoring now")
 
-scores <- sctype_score(scRNAseqData=cds[["RNA"]]@scale.data, scaled=TRUE, gs=gs_list$gs_positive, gs2=gs_list$gs_negative)
+scores <- t(sctype_score(scRNAseqData=cds[["RNA"]]@scale.data, scaled=TRUE, gs=gs_list$gs_positive, gs2=gs_list$gs_negative))
 print("Score results")
 head(scores)
 
-celltype <- rownames(scores)[max.row(scores,ties.method="first")]
+celltype <- colnames(scores)[max.col(scores,ties.method="first")]
 names(celltype) <- assay$sampleIds
 gn_export_statically(celltype, 'cellTypeAssignment')
 
