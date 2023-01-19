@@ -16,7 +16,7 @@ meta:
         }
   description: >
     Accepts data matrix (assumed to be scaled), and tissues to which the samples may belong. The tissues that 
-    are recognized are pulled from the ScTypeDB_full.xlsx file produced by the author.
+    are recognized are pulled from the ScTypeDB_full.xlsx file produced by the author. Please cite https://www.nature.com/articles/s41467-022-28803-w. All packaged from this website and all open source licenses apply.
 endpoints:
   backend:
     cmd: Rscript ./cellid_sctype.R
