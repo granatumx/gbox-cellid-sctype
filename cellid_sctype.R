@@ -10,9 +10,11 @@ tissue <- gn_get_arg('tissue')
 assay <- gn_get_import('assay')
 
 in_matrix_with_gids <- assay$matrix
-rownames(in_matrix_with_gids) <- assay$geneIds
-colnames(in_matrix_with_gids) <- assay$sampleIds
+colnames(in_matrix_with_gids) <- assay$geneIds
+rownames(in_matrix_with_gids) <- assay$sampleIds
+print(in_matrix_with_gids)
 cds <- CreateSeuratObject(counts = in_matrix_with_gids, project = "Proj", min.cells = 3, min.features = 200)
+print(cds)
 gs_list <- gene_sets_prepare("./ScTypeDB_full.xlsx", tissue)
 print("Running scoring now")
 
