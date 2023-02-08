@@ -25,7 +25,7 @@ cds <- ScaleData(cds, features = rownames(cds))
 cds <- RunPCA(cds, features = VariableFeatures(object = cds))
 print("=============== Check this ===================")
 print(cds)
-gs_list <- gene_sets_prepare("./ScTypeDB_full.xlsx", tissue)
+gs_list <- gene_sets_prepare("./data/ScTypeDB_from_web.xlsx", tissue)
 print("Running scoring now")
 
 scores <- t(sctype_score(scRNAseqData=cds[["RNA"]]@scale.data, scaled=TRUE, gs=gs_list$gs_positive, gs2=gs_list$gs_negative))

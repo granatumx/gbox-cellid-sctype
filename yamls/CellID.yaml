@@ -59,6 +59,10 @@ frontend:
           label: Heart
         - value: Adrenal
           label: Adrenal
+        - value: Teeth
+          label: Teeth
+        - value: Embryo
+          label: Embryo
   exports:
     - kind: sampleMeta
       extractFrom: cellTypeAssignment
