@@ -30,14 +30,18 @@ gs_list <- gene_sets_prepare("./data/ScTypeDB_from_web.xlsx", tissue)
 print("Running scoring now")
 
 scores <- t(sctype_score(scRNAseqData=cds[["RNA"]]@scale.data, scaled=TRUE, gs=gs_list$gs_positive, gs2=gs_list$gs_negative))
-print("Score results")
-head(scores)
 
 scores["Unknown"] <- threshold
 
+print("Score results")
+head(scores)
+
 celltype <- {}
 celltype[assay$sampleIds] <- colnames(scores)[max.col(scores,ties.method="first")]
-gn_export_statically(unbox(as.data.frame(celltype)), 'cellTypeAssignment')
+print(celltype)
+print(unbox(celltype))
+#gn_export_statically(unbox(as.data.frame(celltype)), 'cellTypeAssignment')
+gn_export_statically(unbox(celltype), 'cellTypeAssignment')
 
 #gn_add_result(
 #  output[['results']][['numbers_of_genes']],
