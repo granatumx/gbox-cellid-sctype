@@ -7,6 +7,7 @@ source('./granatum_sdk.R') # Uses GranatumX SDK
 source("./gene_sets_prepare.R")
 source("./sctype_score_.R")
 
+threshold <- as.numeric(gn_get_arg('threshold'))
 tissue <- gn_get_arg('tissue')
 assay <- gn_get_import('assay')
 
@@ -31,6 +32,8 @@ print("Running scoring now")
 scores <- t(sctype_score(scRNAseqData=cds[["RNA"]]@scale.data, scaled=TRUE, gs=gs_list$gs_positive, gs2=gs_list$gs_negative))
 print("Score results")
 head(scores)
+
+scores["Unknown"] <- threshold
 
 celltype <- {}
 celltype[assay$sampleIds] <- colnames(scores)[max.col(scores,ties.method="first")]

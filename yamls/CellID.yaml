@@ -24,6 +24,10 @@ endpoints:
     image: {GBOX}
 frontend:
   args:
+    - injectInto: threshold
+      type: number
+      label: Threshold above which a value is considered known
+      default: 1.0
     - injectInto: tissue
       type: select
       label: Tissue type
