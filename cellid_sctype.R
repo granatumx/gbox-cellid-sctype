@@ -41,12 +41,12 @@ celltype[assay$sampleIds] <- append(colnames(scores), "Unknown")[max.col(cbind(s
 #print(celltype)
 #print(unbox(celltype))
 #gn_export_statically(unbox(as.data.frame(celltype)), 'cellTypeAssignment')
-print(t(as.data.frame(celltype)))
-flush(stdout())
-Sys.sleep(10)
+#print(t(as.data.frame(celltype)))
+#flush(stdout())
+#Sys.sleep(10)
 
 
-gn_export_statically(unbox(t(as.data.frame(celltype))), 'cellTypeAssignment')
+gn_export_statically(unbox(as.data.frame(t(as.data.frame(celltype)))), 'cellTypeAssignment')
 
 #gn_add_result(
 #  output[['results']][['numbers_of_genes']],
