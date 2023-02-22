@@ -38,10 +38,10 @@ head(scores)
 
 celltype <- {}
 celltype[assay$sampleIds] <- colnames(scores)[max.col(scores,ties.method="first")]
-print(celltype)
-print(unbox(celltype))
+#print(celltype)
+#print(unbox(celltype))
 #gn_export_statically(unbox(as.data.frame(celltype)), 'cellTypeAssignment')
-gn_export_statically(unbox(celltype), 'cellTypeAssignment')
+gn_export_statically(celltype, 'cellTypeAssignment')
 
 #gn_add_result(
 #  output[['results']][['numbers_of_genes']],
