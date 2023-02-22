@@ -31,11 +31,12 @@ print("Running scoring now")
 
 scores <- t(sctype_score(scRNAseqData=cds[["RNA"]]@scale.data, scaled=TRUE, gs=gs_list$gs_positive, gs2=gs_list$gs_negative))
 
-#scores["Unknown"] <- threshold
+scores['Unknown'] <- threshold
 
 print("Score results")
 head(scores)
 
+flush(stdout())
 Sys.sleep(10)
 
 celltype <- {}
