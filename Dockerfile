@@ -6,6 +6,7 @@ FROM granatumx/gbox-r-sdk:1.0.0
 RUN R -e 'install.packages("HGNChelper")'
 RUN R -e 'install.packages("Seurat")'
 RUN R -e 'install.packages("openxlsx")'
+RUN R -e 'install.packages("jsonlite")'
 
 COPY . .
 
