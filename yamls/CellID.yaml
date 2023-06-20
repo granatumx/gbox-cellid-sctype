@@ -21,7 +21,7 @@ endpoints:
   backend:
     cmd: Rscript ./cellid_sctype.R
     type: docker
-    image: {GBOX}
+    image: { GBOX }
 frontend:
   args:
     - injectInto: threshold
@@ -67,6 +67,14 @@ frontend:
           label: Teeth
         - value: Embryo
           label: Embryo
+    - injectInto: jsonAddition
+      type: text
+      label: JSON Manual Entry for scTypeDB
+      default: ""
+      description: >-
+        Enter a json transform of the additional lines to scTypeDB (use the same column headings).
+        [{"tissueType":"Brain","cellName":"Astrocytes2","geneSymbolmore1":"NEWGENE1,NEWGENE2,CBS,SOX9","geneSymbolmore2":"","shortName":"ASTRO2"}]
+        The tissue type from this entry will be used as the tissue type selected.
   exports:
     - kind: sampleMeta
       extractFrom: cellTypeAssignment

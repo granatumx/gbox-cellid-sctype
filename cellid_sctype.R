@@ -2,6 +2,8 @@ library(dplyr)
 library(Seurat)
 library(HGNChelper)
 library(data.table)
+library(jsonlite)
+library(xlsx)
 
 source('./granatum_sdk.R') # Uses GranatumX SDK
 source("./gene_sets_prepare.R")
@@ -9,6 +11,7 @@ source("./sctype_score_.R")
 
 threshold <- as.numeric(gn_get_arg('threshold'))
 tissue <- gn_get_arg('tissue')
+jsonAddition <- gn_get_arg('jsonAddition')
 assay <- gn_get_import('assay')
 
 in_matrix_with_gids <- as.data.table(assay$matrix)
@@ -24,9 +27,18 @@ print(head(colnames(cds$RNA)))
 cds <- FindVariableFeatures(cds, selection.method = "vst")
 cds <- ScaleData(cds, features = rownames(cds))
 cds <- RunPCA(cds, features = VariableFeatures(object = cds))
+fload <- "./data/ScTypeDB_from_web.xlsx"
+if (nchar(jsonAddition) > 0) {
+  json_data <- fromJSON(jsonAddition)
+  tissue <- json_data$tissueType[1]
+  table_data <- read.xlsx(fload, 1)
+  totdata <- rbind(json_data, table_data)
+  fload <- "./data/ScTypeDB_from_web_2.xlsx"
+  write.xlsx(totdata, fload, row.names = FALSE, showNA = FALSE)
+} 
 print("=============== Check this ===================")
 print(cds)
-gs_list <- gene_sets_prepare("./data/ScTypeDB_from_web.xlsx", tissue)
+gs_list <- gene_sets_prepare(fload, tissue)
 print("Running scoring now")
 
 scores <- t(sctype_score(scRNAseqData=cds[["RNA"]]@scale.data, scaled=TRUE, gs=gs_list$gs_positive, gs2=gs_list$gs_negative))
