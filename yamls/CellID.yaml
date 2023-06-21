@@ -74,7 +74,7 @@ frontend:
       description: >-
         Enter a json transform of the additional lines to scTypeDB (use the same column headings).
         [{"tissueType":"Brain","cellName":"Astrocytes2","geneSymbolmore1":"NEWGENE1,NEWGENE2,CBS,SOX9","geneSymbolmore2":"","shortName":"ASTRO2"}]
-        The tissue type from this entry will be used as the tissue type selected.
+        The tissue type from this entry will be used as the tissue type selected overriding the dropdown.
   exports:
     - kind: sampleMeta
       extractFrom: cellTypeAssignment
