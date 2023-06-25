@@ -3,7 +3,7 @@ library(Seurat)
 library(HGNChelper)
 library(data.table)
 library(jsonlite)
-library(xlsx)
+library(openxlsx)
 
 source('./granatum_sdk.R') # Uses GranatumX SDK
 source("./gene_sets_prepare.R")
