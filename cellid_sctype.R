@@ -49,6 +49,12 @@ print("Score results")
 head(scores)
 
 celltype <- {}
+if (threshold > -1000) {
+  celltype[assay$sampleIds] <- append(colnames(scores), "Unknown")[max.col(cbind(scores, threshold),ties.method="first")
+]
+} else {
+  celltype[assay$sampleIds] <- colnames(scores)[max.col(scores, ties.method="first")]
+}
 celltype[assay$sampleIds] <- append(colnames(scores), "Unknown")[max.col(cbind(scores, threshold),ties.method="first")]
 #print(celltype)
 #print(unbox(celltype))

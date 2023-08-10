@@ -27,6 +27,9 @@ frontend:
     - injectInto: threshold
       type: number
       label: Threshold above which a value is considered known
+      description: >-
+        Scores are used to determine whether a cell type is known or not
+        Entering a value less than or equal to -1000 will disable unknown
       default: 1.0
     - injectInto: tissue
       type: select
