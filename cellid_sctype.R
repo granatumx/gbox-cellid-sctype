@@ -55,7 +55,7 @@ if (threshold > -1000) {
 } else {
   celltype[assay$sampleIds] <- colnames(scores)[max.col(scores, ties.method="first")]
 }
-celltype[assay$sampleIds] <- append(colnames(scores), "Unknown")[max.col(cbind(scores, threshold),ties.method="first")]
+#celltype[assay$sampleIds] <- append(colnames(scores), "Unknown")[max.col(cbind(scores, threshold),ties.method="first")]
 #print(celltype)
 #print(unbox(celltype))
 #gn_export_statically(unbox(as.data.frame(celltype)), 'cellTypeAssignment')
